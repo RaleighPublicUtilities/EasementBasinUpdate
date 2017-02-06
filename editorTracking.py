@@ -2,10 +2,13 @@ import arcpy
 from arcpy import env
 
 #test
-env.workspace = "C:/data/BasinTest.gdb"
+# env.workspace = "C:/data/BasinTest.gdb"
 # env.workspace = "Database Connections/RPUD_TESTDB.sde"
 #trans
-# env.workspace = "Database Connections/RPUD_TRANSDB.sde"
+env.workspace = "Database Connections/RPUD_TRANSDB.sde"
+
+
+# env.workspace = "Database Connections/Trans_SDE.sde"
 
 def turnOnEditorTracking(fc):
 	try:
@@ -26,10 +29,10 @@ def turnOffEditorTracking(fc):
 
 
 #######################################################################
-fcs = arcpy.ListFeatureClasses("", "", "SewerCollectionNetwork")
-print fcs
-fcs += [u'PU_Boundaries/EasementMaintenanceAreas']
-print fcs
+fcs = arcpy.ListFeatureClasses("", "", "RPUD.SewerCollectionNetwork")
+# print fcs
+fcs += [u'RPUD.PU_Boundaries/RPUD.EasementMaintenanceAreas']
+# print fcs
 
 for fc in fcs:
 	turnOffEditorTracking(fc)

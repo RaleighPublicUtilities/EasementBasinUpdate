@@ -2,10 +2,10 @@ import arcpy
 from arcpy import env
 
 #test
-env.workspace = "C:/data/BasinTest.gdb"
+# env.workspace = "C:/data/BasinTest.gdb"
 # env.workspace = "Database Connections/RPUD_TESTDB.sde"
 #trans
-# env.workspace = "Database Connections/RPUD_TRANSDB.sde"
+env.workspace = "Database Connections/RPUD_TRANSDB.sde"
 
 #field object
 class PUField:
@@ -44,5 +44,5 @@ def addField(fc, newField):
 fieldBasin = PUField("BASIN", "TEXT", "", "", 30, "Drainage Basin", "NULLABLE", "NON_REQUIRED", "RPUD_BASIN_DOMAIN")
 
 #add basin field to Easment layer
-fc = "PU_Boundaries/EasementMaintenanceAreas"
+fc = "RPUD.PU_Boundaries/RPUD.EasementMaintenanceAreas"
 addField(fc, fieldBasin)

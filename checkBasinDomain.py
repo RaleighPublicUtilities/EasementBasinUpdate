@@ -3,9 +3,9 @@ from arcpy import env
 
 # env.workspace = "C:/data/BasinTest.gdb"
 #test
-env.workspace = "Database Connections/RPUD_TESTDB.sde"
+# env.workspace = "Database Connections/RPUD_TESTDB.sde"
 #trans
-# env.workspace = "Database Connections/RPUD_TRANSDB.sde"
+env.workspace = "Database Connections/RPUD_TRANSDB.sde"
 
 fcs = arcpy.ListFeatureClasses("", "", "RPUD.SewerCollectionNetwork")
 domDict = {"BEAVER EAST": "BEAVER EAST", 

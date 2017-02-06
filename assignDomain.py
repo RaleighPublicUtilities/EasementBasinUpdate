@@ -2,9 +2,10 @@ import arcpy
 from arcpy import env
 
 #test
-env.workspace = "Database Connections/RPUD_TESTDB.sde"
+# env.workspace = "Database Connections/RPUD_TESTDB.sde"
 #trans
 # env.workspace = "Database Connections/RPUD_TRANSDB.sde"
+
 
 domName = "RPUD_BASIN_DOMAIN"
 gdb = env.workspace
@@ -17,6 +18,7 @@ for domain in domains:
 	if domain == domName:
 		isDomain = True
 		print("Domain exists.")
+
 
 #check if field exists
 if isDomain == True:
