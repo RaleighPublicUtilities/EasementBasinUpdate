@@ -4,13 +4,13 @@ from arcpy import env
 # env.overwriteOutput = True
 
 #test
-# env.workspace = "Database Connections/RPUD_TESTDB.sde"
+env.workspace = "Database Connections/RPUD_TESTDB.sde"
 # env.workspace = "C:/data/BasinTest.gdb"
 
 # fc_basin = "PU_Boundaries/SewerBasins"
 
 #trans
-env.workspace = "Database Connections/RPUD_TRANSDB.sde"
+# env.workspace = "Database Connections/RPUD_TRANSDB.sde"
 
 # fc = "RPUD.PU_Boundaries/RPUD.EasementMaintenanceAreas"
 fc_basin = "RPUD.PU_Boundaries/RPUD.SewerBasins"
@@ -31,14 +31,32 @@ def calculateBasin(fc, basinLyr):
 		pass
 		print(fc + " does not have a BASIN field.")
 
+
+def calculateLength(fc, field):
+	fLyr = "lyr_" + fc
+	arcpy.MakeFeatureLayer_management(fc, fLyr)
+	# try:
+	arcpy.CalculateField_management(fLyr, field, "!SHAPE.LEN!", "PYTHON_9.3", "")
+	# except:
+		# print(fc + "does not have a " + field + " field.")
 #####################################################################################################################################
+# 02/03/2017
 #calculate basin for Easement
 # fc = "RPUD.EasementMaintenanceAreas"
 # arcpy.MakeFeatureLayer_management(fc_basin, "lyr_basin")
 # calculateBasin(fc, "lyr_basin")
 #calculate basin for sewer featureclasses
-fcs = arcpy.ListFeatureClasses("", "", "RPUD.SewerCollectionNetwork")
-for fc in fcs:
-	basinLyr = "basin_" + fc
-	arcpy.MakeFeatureLayer_management(fc_basin, basinLyr)
-	calculateBasin(fc, basinLyr)
+# fcs = arcpy.ListFeatureClasses("", "", "RPUD.SewerCollectionNetwork")
+# for fc in fcs:
+# 	basinLyr = "basin_" + fc
+# 	arcpy.MakeFeatureLayer_management(fc_basin, basinLyr)
+# 	calculateBasin(fc, basinLyr)
+
+#
+#calculate length for gravity main
+env.workspace = "Database Connections/RPUD_TRANSDB.sde/RPUD.SewerCollectionNetwork"
+fc = "RPUD.ssGravityMain"
+field = "LENGTH"
+
+calculateLength(fc, field)
+

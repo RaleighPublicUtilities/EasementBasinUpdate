@@ -3,9 +3,9 @@ from arcpy import env
 
 #test
 # env.workspace = "C:/data/BasinTest.gdb"
-# env.workspace = "Database Connections/RPUD_TESTDB.sde"
+env.workspace = "Database Connections/RPUD_TESTDB.sde"
 #trans
-env.workspace = "Database Connections/RPUD_TRANSDB.sde"
+# env.workspace = "Database Connections/RPUD_TRANSDB.sde"
 
 #field object
 class PUField:
@@ -40,9 +40,20 @@ def addField(fc, newField):
 		print("Field " + newField.d_name + " already exists.")
 
 ####################################################################################################################
-#create basin field with Domain RPUD_BASIN_DOMAIN
-fieldBasin = PUField("BASIN", "TEXT", "", "", 30, "Drainage Basin", "NULLABLE", "NON_REQUIRED", "RPUD_BASIN_DOMAIN")
+# 02/03/2017
+# #create basin field with Domain RPUD_BASIN_DOMAIN
+# fieldBasin = PUField("BASIN", "TEXT", "", "", 30, "Drainage Basin", "NULLABLE", "NON_REQUIRED", "RPUD_BASIN_DOMAIN")
 
-#add basin field to Easment layer
+# #add basin field to Easment layer
+# fc = "RPUD.PU_Boundaries/RPUD.EasementMaintenanceAreas"
+# addField(fc, fieldBasin)
+
+# #create length field and diameter field for sewer gravity main and easement
+fieldLength = PUField("LENGTH", "DOUBLE", "", 8, "", "Length", "NULLABLE", "NON_REQUIRED", "")
+fieldDiameter = PUField("DIAMETER", "DOUBLE", "", 8, "", "Diameter", "NULLABLE", "NON_REQUIRED", "DIAMETER")
+
+fc = "RPUD.SewerCollectionNetwork/RPUD.ssGravityMain"
+addField(fc, fieldLength)
+
 fc = "RPUD.PU_Boundaries/RPUD.EasementMaintenanceAreas"
-addField(fc, fieldBasin)
+addField(fc, fieldDiameter)

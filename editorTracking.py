@@ -35,5 +35,5 @@ fcs += [u'RPUD.PU_Boundaries/RPUD.EasementMaintenanceAreas']
 # print fcs
 
 for fc in fcs:
-	turnOffEditorTracking(fc)
-	# turnOnEditorTracking(fc)
+	# turnOffEditorTracking(fc)
+	turnOnEditorTracking(fc)
